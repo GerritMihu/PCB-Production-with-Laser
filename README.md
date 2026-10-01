@@ -18,7 +18,7 @@ The documentation is machine-independent: the process lives in `docs/`, machine-
 | Via (drill / pad) | 0.8 / 1.6 mm | TODO |
 | Solder mask | no working process yet | TODO |
 | Software | xTool Studio | TODO |
-| Linux | Wine only, see [Linux test](machines/xtool-f2-ultra/software-linux.md) | TODO |
+| Linux | Wine: installs & launches, device test pending – [Linux test](machines/xtool-f2-ultra/software-linux.md) | TODO |
 
 ## Contents
 

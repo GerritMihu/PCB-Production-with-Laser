@@ -16,7 +16,7 @@
 
 | Variante | Aufwand | Status |
 |---|---|---|
-| A: Wine + Community-Skript | gering | **Test ausstehend** |
+| A: Wine + Community-Skript | gering | **installiert, startet** – Gerätetest offen |
 | B: Windows-VM (KVM/virt-manager) mit USB-Passthrough | mittel | Fallback |
 | C: eigener Windows-/Mac-Rechner an der Maschine | – | Notlösung |
 
@@ -26,8 +26,8 @@
 
 | Schritt | Ergebnis | Notiz |
 |---|---|---|
-| Installation (`install.sh`) | TODO | |
-| Start / UI / Arbeitsfläche | TODO | |
+| Installation (`install.sh`) | ✅ 2026-10-01 | xTool Studio 1.9.11, Wine 11.17 staging (Kron4ek) vom Skript geladen, ca. 5 min |
+| Start / UI | ✅ 2026-10-01 | Fenster erscheint nach ca. 30 s, Dialog Land/Region; Arbeitsfläche (WebGL) noch prüfen |
 | Login xTool-Konto | TODO | |
 | Gerät per WLAN finden | TODO | |
 | Gerät per USB finden | TODO | |
@@ -35,6 +35,12 @@
 | Kamera / Positionierung | TODO | |
 
 ## Installation (Variante A)
+
+Den Installer für 1.9.11 gibt es direkt bei xTool: `storage.atomm.com/.../xTool-Studio-x64-1.9.11.exe`, URL aus dem offiziellen [winget-Manifest](https://github.com/microsoft/winget-pkgs/tree/master/manifests/m/Makeblock/xToolStudio).
+SHA256: `3a2436980a9a6cfea6b7c75ffb34b2f4f8b8ed1966880e8cfb0002573954ac41`
+
+Installiert wird nach `~/.local/share/wineprefixes/xtool-studio`, `~/.local/share/xtool-studio` (Wine + Logs), Starter `~/.local/bin/xtool-studio` und Menüeintrag. Kein sudo nötig, abgesehen von den apt-Paketen.
+
 
 ```bash
 sudo -A apt install p7zip-full winetricks cabextract icoutils curl

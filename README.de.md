@@ -18,7 +18,7 @@ Die Doku ist maschinenunabhängig aufgebaut: Das Verfahren steht in `docs/`, mas
 | Via (Bohrung / Pad) | 0,8 / 1,6 mm | TODO |
 | Lötstopplack | noch kein Verfahren | TODO |
 | Software | xTool Studio | TODO |
-| Linux | nur per Wine, siehe [Linux-Test](machines/xtool-f2-ultra/software-linux.de.md) | TODO |
+| Linux | Wine: installiert & startet, Gerätetest offen – [Linux-Test](machines/xtool-f2-ultra/software-linux.de.md) | TODO |
 
 ## Inhalt
 
