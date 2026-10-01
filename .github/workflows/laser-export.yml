@@ -18,7 +18,7 @@ jobs:
   export:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/inti-cmnb/kibot-docker:kicad-10
+      image: ghcr.io/inti-cmnb/kicad10_auto_full:1.8.6
     steps:
       - uses: actions/checkout@v4
 
