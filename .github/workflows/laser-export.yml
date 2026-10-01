@@ -1,0 +1,47 @@
+name: Laser-Export (KiBot, KiCad 10)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'examples/**.kicad_pcb'
+      - 'examples/**.kicad_sch'
+      - 'examples/**.kicad_pro'
+      - 'kibot/**'
+      - '.github/workflows/laser-export.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/inti-cmnb/kibot-docker:kicad-10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: KiBot Laser-Export für alle Beispiele
+        run: |
+          for pcb in examples/*/*.kicad_pcb; do
+            dir=$(dirname "$pcb")
+            echo "::group::$pcb"
+            rm -rf "$dir/laser"
+            kibot -c kibot/laser.kibot.yaml -b "$pcb" -d "$dir/laser"
+            echo "::endgroup::"
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: laser-export
+          path: examples/*/laser/
+
+      - name: Exporte committen
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add -f examples/*/laser/
+          git commit -m "Automatischer Laser-Export (KiBot)" || exit 0
+          git push
