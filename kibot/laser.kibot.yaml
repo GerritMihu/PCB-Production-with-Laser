@@ -1,0 +1,55 @@
+# KiBot-Export für Laser-Ablation (xTool F2 Ultra, später Trotec Speedy)
+# Nur Kupfer + Umriss + Bohrungen – kein Lötstopplack, kein Bestückungsdruck.
+# Aufruf: kibot -c laser.kibot.yaml -b <board>.kicad_pcb -d laser/
+kibot:
+  version: 1
+
+global:
+  out_dir: laser
+
+outputs:
+  - name: gerber_laser
+    comment: Gerber Kupfer + Edge.Cuts
+    type: gerber
+    dir: gerber
+    layers: [F.Cu, B.Cu, Edge.Cuts]
+
+  - name: drill_laser
+    comment: Bohrdaten (Excellon) + Bohrplan
+    type: excellon
+    dir: gerber
+    options:
+      pth_and_npth_single_file: true
+      map: pdf
+
+  - name: svg_top
+    comment: SVG F.Cu + Umriss, 1:1, für Laser-Software
+    type: svg
+    dir: svg
+    layers: [F.Cu]
+    options:
+      plot_sheet_reference: false
+      scaling: 1
+      exclude_edge_layer: false
+      drill_marks: full
+
+  - name: svg_bottom
+    comment: SVG B.Cu + Umriss, gespiegelt (Platine wird umgedreht)
+    type: svg
+    dir: svg
+    layers: [B.Cu]
+    options:
+      plot_sheet_reference: false
+      scaling: 1
+      exclude_edge_layer: false
+      mirror_plot: true
+      drill_marks: full
+
+  - name: svg_edge
+    comment: SVG nur Umriss (Konturschnitt)
+    type: svg
+    dir: svg
+    layers: [Edge.Cuts]
+    options:
+      plot_sheet_reference: false
+      scaling: 1
