@@ -2,42 +2,27 @@
 
 🇬🇧 [English](../en/04-export.md) · [← Übersicht](../../README.de.md)
 
-Für den Laser werden nur **Kupferlagen, Umriss und Bohrungen** gebraucht. Lötstopplack und Bestückungsdruck werden weggelassen.
+Für den Laser werden nur **Kupferlagen, Umriss und Bohrmarken** gebraucht. Lötstopplack und Bestückungsdruck werden weggelassen.
 
-## Variante A: KiBot (empfohlen)
+**Bewährtes Format für xTool Studio: DXF**, mit dem Umriss in jeder Kupfer-DXF. xTool füllt die Verbundform so, dass genau das Kupfer zwischen den Leiterbahnen abgetragen wird.
 
-Die Config `kibot/laser.kibot.yaml` erzeugt:
+| Weg | Anleitung |
+|---|---|
+| Manuell in KiCad (Plotten → DXF) | [Manueller Weg, Teil C](08-anleitung-manuell.md#teil-c-export-für-den-laser-kicad) |
+| Automatisch per KiBot / GitHub Actions | [Automatischer Weg](09-anleitung-automatisch.md) |
 
-| Ausgabe | Datei(en) | Verwendung |
+## Die wichtigsten Einstellungen
+
+| Einstellung | Wert | Warum |
 |---|---|---|
-| Gerber | `laser/gerber/*-F_Cu.gbr`, `*-B_Cu.gbr`, `*-Edge_Cuts.gbr` | Archiv / andere Maschinen |
-| Bohrdaten | `laser/gerber/*.drl` + Bohrplan-PDF | Bohren |
-| SVG oben | `laser/svg/*-F_Cu.svg` | Import in Laser-Software |
-| SVG unten | `laser/svg/*-B_Cu.svg` (**gespiegelt**) | Import in Laser-Software |
-| SVG Umriss | `laser/svg/*-Edge_Cuts.svg` | Konturschnitt / Ausrichtung |
-
-**Lokal:**
-
-```bash
-kibot -c "/pfad/zu/PCB-Production with Laser/kibot/laser.kibot.yaml" -b MeinBoard.kicad_pcb -d laser/
-```
-
-**In GitHub Actions** (wie in den anderen Repos mit dem KiCad-10-Container): Config ins Projekt-Repo kopieren und im Workflow aufrufen:
-
-```yaml
-- name: Laser-Export
-  run: kibot -c laser.kibot.yaml -d cam/
-```
-
-## Variante B: manuell in KiCad
-
-1. Leiterplatteneditor → *Datei → Plotten*
-2. Format **SVG**, Lagen `F.Cu` (+ `Edge.Cuts`), Maßstab 1:1
-3. Für `B.Cu`: **Gespiegelt plotten** aktivieren
-4. *Bohrmarken: Tatsächliche Größe* – hilft beim Bohren nach dem Lasern
+| Plotformat | DXF | Import in xTool Studio als Vektor |
+| Auf allen Lagen plotten | `Edge.Cuts` | Umriss + Kupfer = Verbundform, die gefüllt werden kann |
+| Bohrlochmarkierungen | klein | Zentrierpunkt zum Bohren bleibt kupferfrei |
+| Konturen (Polygonmodus) | ein | Flächen statt Mittellinien |
+| Einheit | Millimeter | kein Umrechnungsfehler |
 
 ## Hinweise
 
-- **Unterseite spiegeln:** Die Platine wird zum Lasern der Unterseite umgedreht, daher muss das Bild gespiegelt sein.
-- **Positiv/Negativ:** Je nach Laser-Software muss die Fläche *zwischen* den Leiterbahnen gefüllt werden. Wie das umgesetzt wird, steht maschinenspezifisch in `machines/<maschine>/`.
-- **Maßstab prüfen:** Nach dem Import ein bekanntes Maß (z. B. Platinenbreite) in der Laser-Software kontrollieren.
+- **Unterseite (B.Cu):** Die Platine wird umgedreht, daher muss das Bild gespiegelt werden, entweder in xTool Studio oder als gespiegeltes SVG (KiBot).
+- **Maßstab prüfen:** Nach dem Import die Platinenbreite in xTool Studio kontrollieren.
+- **SVG** geht als Alternative auch (KiBot erzeugt es auf die Platine beschnitten), ist aber noch nicht an der Maschine getestet.

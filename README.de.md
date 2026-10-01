@@ -29,6 +29,8 @@ Die Doku ist maschinenunabhängig aufgebaut: Das Verfahren steht in `docs/`, mas
 5. [Nachbearbeitung](docs/de/05-nachbearbeitung.md)
 6. [Fehlerbilder](docs/de/06-fehlerbilder.md)
 7. [Schüler-Kurzanleitung](docs/de/07-schueler-anleitung.md)
+8. [**Manueller Weg Schritt für Schritt:** KiCad → xTool](docs/de/08-anleitung-manuell.md)
+9. [**Automatischer Weg:** KiBot + GitHub Actions](docs/de/09-anleitung-automatisch.md)
 
 ## Repo-Struktur
 
@@ -36,7 +38,8 @@ Die Doku ist maschinenunabhängig aufgebaut: Das Verfahren steht in `docs/`, mas
 docs/de, docs/en       Verfahren (maschinenunabhängig)
 machines/<maschine>/   Maschinendaten, Laser-Parameter, Presets, Software
 kicad/template/        KiCad-Projektvorlage mit passenden Design-Regeln
-kibot/                 KiBot-Config für den Laser-Export (Gerber + SVG)
+kibot/                 KiBot-Config für den Laser-Export (DXF + SVG + Gerber)
+examples/              Beispielprojekte inkl. automatisch erzeugter Laser-Dateien
 images/                Fotos und Grafiken
 ```
 

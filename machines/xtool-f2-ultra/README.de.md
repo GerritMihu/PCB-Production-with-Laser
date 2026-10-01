@@ -6,7 +6,8 @@
 
 | | |
 |---|---|
-| Laserquellen | 60 W MOPA-Faserlaser + 40 W Diodenlaser *(Herstellerangabe – vor Ort prüfen)* |
+| Gerät (laut xTool Studio) | F2 Ultra, Gerätecode `GS004-CLASS-4` |
+| Laserquellen | 60 W MOPA-Faserlaser (*Faser-IR*) + 40 W Diodenlaser (*Blaues Licht*) |
 | Ablenkung | Galvo |
 | Laserklasse | TODO (Typenschild) |
 | Anbindung | USB / WLAN |
@@ -17,27 +18,67 @@
 
 Siehe [Design-Regeln](../../docs/de/03-design-regeln.md) – KiCad-Vorlage `Laser_PCB_xTool`.
 
-## Laser-Parameter Kupfer-Ablation
+## Laser-Parameter (Stand 07/2026)
 
-> **TODO:** Bewährte Werte eintragen. Je Material/Kupferstärke eine Zeile.
+**Quelle:** xTool-Projekt [`presets/stiftklavier-F_Cu.xs`](presets/stiftklavier-F_Cu.xs) vom 02.07.2026 (Stiftklavier, einseitig). Die Werte wurden direkt aus der Projektdatei ausgelesen.
 
-| Schritt | Laser | Leistung | Geschwindigkeit | Frequenz | Pulsbreite | Durchgänge | Linienabstand | Fokus |
-|---|---|---|---|---|---|---|---|---|
-| Kupfer abtragen (Füllung) | Faser | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
-| Konturen nachfahren | Faser | TODO | TODO | TODO | TODO | TODO | – | TODO |
-| Reinigungsdurchgang | Faser | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+![Vorschau des xTool-Projekts](../../images/xtool/stiftklavier-xs-vorschau.png)
 
-Projektdateien/Materialvorlagen aus xTool Studio unter [`presets/`](presets/) ablegen.
+Das Projekt enthält **zwei Objekte**:
 
-## Ablauf in xTool Studio
+| Objekt | Herkunft | Bearbeitungsart |
+|---|---|---|
+| Kupferbild + Umriss (gefüllte Verbundform) | `…-F_Cu.dxf` | **Gravieren** (Füllung): trägt das Kupfer zwischen den Leiterbahnen ab |
+| Platinenumriss | `…-Edge_Cuts.dxf` | **Schnitt**: schneidet die Platine aus dem FR4 |
 
-1. SVG aus dem [Export](../../docs/de/04-export.md) importieren.
-2. Maßstab prüfen (Platinenbreite messen).
-3. TODO: Füllung invertieren / Fläche zwischen Leiterbahnen auswählen.
-4. Platine einlegen und fixieren, Fokus einstellen.
-5. Rahmen (Framing) fahren → Position kontrollieren.
-6. Job starten, Absaugung läuft.
-7. TODO: Ober-/Unterseite ausrichten (Anschlag, Passmarken, Kamera?).
+### 1. Kupfer abtragen: Gravieren (Füllung)
+
+| Parameter (xTool Studio) | Wert |
+|---|---|
+| Material | Benutzerdefiniertes Material (gespeichertes Parameter-Schema) |
+| Laserart | **Faser-IR** |
+| Leistung | **90 %** |
+| Geschwindigkeit | **2400 mm/s** |
+| Bearbeitungsanzahl (Durchgänge) | **10** |
+| Linien pro cm | **240** (≈ 0,042 mm Linienabstand) |
+| Gravurwinkel | **45°** |
+| Gravurmodus | Bidirektional (Z-Modus) |
+| Konturverfolgung | **ein** |
+| Impulsbreite | **200 ns** |
+| Frequenz | **65 kHz** |
+| Defokus | aus |
+| Schnittfugenkompensation | aus |
+
+### 2. Platine ausschneiden: Schnitt
+
+| Parameter (xTool Studio) | Wert |
+|---|---|
+| Laserart | **Faser-IR** |
+| Leistung | **88 %** |
+| Geschwindigkeit | **300 mm/s** |
+| Bearbeitungsanzahl (Durchgänge) | **160** |
+| Z-Absenkung | ein, schrittweise: **0,1 mm alle 10 Durchgänge** |
+| Tabs (Haltestege) | ein, automatisch: **2 Stück, 0,5 mm** |
+| Impulsbreite | **30 ns** |
+| Frequenz | **130 kHz** |
+| Flattern (Wobble) | aus |
+| Schnittfugenkompensation | aus |
+
+### Projekt-Einstellungen
+
+| Einstellung | Wert |
+|---|---|
+| Bearbeitungsweg | automatisch: zuerst gravieren, dann schneiden |
+| Scanrichtung | von oben nach unten |
+
+> **TODO:** Kupferstärke und Plattendicke des verwendeten FR4 ergänzen. Erst damit sind die Werte auf andere Platten übertragbar.
+> **TODO:** Doppelseitige Platinen sind noch nicht getestet (Ausrichtung beim Umdrehen).
+
+Weitere Projektdateien bzw. Materialvorlagen unter [`presets/`](presets/) ablegen.
+
+## Ablauf
+
+Die vollständige Anleitung mit jedem einzelnen Klick: [Manueller Weg: KiCad → xTool](../../docs/de/08-anleitung-manuell.md).
 
 ## Lötstopplack
 

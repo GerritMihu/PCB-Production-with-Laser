@@ -16,7 +16,7 @@ Beim Abtragen von Kupfer und beim Anbrennen von FR4 (Glasfaser + Epoxidharz) ent
 
 - Absaugung/Filter **immer** einschalten, bevor der Laser startet.
 - Nach dem Job kurz nachlaufen lassen, erst dann öffnen.
-- FR4 **nicht durchschneiden** mit dem Laser, sofern nicht ausdrücklich freigegeben – Konturen lieber mechanisch trennen.
+- Beim **Ausschneiden von FR4** mit dem Faserlaser (160 Durchgänge) entsteht besonders viel Glasfaser- und Epoxidstaub. Nur mit laufender Absaugung schneiden, danach den Arbeitsraum reinigen.
 
 ## Brandschutz
 

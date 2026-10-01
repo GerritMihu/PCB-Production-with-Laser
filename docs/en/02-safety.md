@@ -16,7 +16,7 @@ Ablating copper and scorching FR4 (glass fiber + epoxy) produces **harmful fumes
 
 - **Always** switch on extraction/filtering before starting the laser.
 - Let it run a little after the job before opening the lid.
-- Do **not cut through** FR4 with the laser unless explicitly approved – separate contours mechanically instead.
+- **Cutting FR4** with the fiber laser (160 passes) produces a lot of glass-fiber and epoxy dust. Only cut with the extraction running, and clean the work area afterwards.
 
 ## Fire safety
 

@@ -29,6 +29,8 @@ The documentation is machine-independent: the process lives in `docs/`, machine-
 5. [Post-processing](docs/en/05-post-processing.md)
 6. [Common defects](docs/en/06-defects.md)
 7. [Student quick guide](docs/en/07-student-guide.md)
+8. [**Manual path step by step:** KiCad → xTool](docs/en/08-guide-manual.md)
+9. [**Automatic path:** KiBot + GitHub Actions](docs/en/09-guide-automatic.md)
 
 ## Repository layout
 
@@ -36,7 +38,8 @@ The documentation is machine-independent: the process lives in `docs/`, machine-
 docs/de, docs/en       process (machine-independent)
 machines/<machine>/    machine data, laser parameters, presets, software
 kicad/template/        KiCad project template with matching design rules
-kibot/                 KiBot config for laser export (Gerber + SVG)
+kibot/                 KiBot config for laser export (DXF + SVG + Gerber)
+examples/              example projects incl. auto-generated laser files
 images/                photos and graphics
 ```
 
