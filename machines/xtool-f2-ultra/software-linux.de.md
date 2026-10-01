@@ -27,7 +27,8 @@
 | Schritt | Ergebnis | Notiz |
 |---|---|---|
 | Installation (`install.sh`) | ✅ 2026-10-01 | xTool Studio 1.9.11, Wine 11.17 staging (Kron4ek) vom Skript geladen, ca. 5 min |
-| Start / UI | ✅ 2026-10-01 | Fenster erscheint nach ca. 30 s, Dialog Land/Region; Arbeitsfläche (WebGL) noch prüfen |
+| Start / UI | ✅ 2026-10-01 | Fenster erscheint nach ca. 30 s, Dialog Land/Region |
+| Arbeitsfläche / Bearbeiten | ✅ 2026-10-01 | Oberfläche erscheint, Objekte bearbeitbar |
 | Login xTool-Konto | TODO | |
 | Gerät per WLAN finden | TODO | |
 | Gerät per USB finden | TODO | |

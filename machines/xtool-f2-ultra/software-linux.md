@@ -27,7 +27,8 @@
 | Step | Result | Note |
 |---|---|---|
 | Installation (`install.sh`) | ✅ 2026-10-01 | xTool Studio 1.9.11, Wine 11.17 staging (Kron4ek) downloaded by the script, ~5 min |
-| Launch / UI | ✅ 2026-10-01 | window appears after ~30 s, country/region dialog; canvas (WebGL) still to check |
+| Launch / UI | ✅ 2026-10-01 | window appears after ~30 s, country/region dialog |
+| Canvas / editing | ✅ 2026-10-01 | UI renders, objects can be edited |
 | xTool account login | TODO | |
 | Find device via Wi-Fi | TODO | |
 | Find device via USB | TODO | |
